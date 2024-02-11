@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import portfolio.MovieApp.entity.MovieNewsWrapper;
 import portfolio.MovieApp.entity.Top250Movies;
 import portfolio.MovieApp.entity.TopBoxOffice;
+import portfolio.MovieApp.entity.UpcomingMovies;
 import portfolio.MovieApp.entity.UpcomingTVShows;
 
 @Service
@@ -21,6 +22,7 @@ public class MovieServiceImpl implements MovieService{
     final String URL_TOP_BOX_OFFICE="https://moviesverse1.p.rapidapi.com/top-box-office" ;
     final String URL_TOP_250_MOVIES = "https://moviesverse1.p.rapidapi.com/top-250-movies" ;
     final String URL_UPCOMING_TV_SHOWS = "https://moviesverse1.p.rapidapi.com/upcoming-tv-shows" ;
+    final String URL_UPCOMING_MOVIES = "https://moviesverse1.p.rapidapi.com/upcoming-movies" ;
     @Autowired
     RestTemplate  restTemplate = new RestTemplate() ;
 
@@ -49,10 +51,16 @@ public class MovieServiceImpl implements MovieService{
         return response;
     }
 
+    @Override
+    public UpcomingMovies getUpcomingMovies() {
+        UpcomingMovies response = restTemplate.exchange(URL_UPCOMING_MOVIES, HttpMethod.GET,getEntity(), UpcomingMovies.class).getBody() ;
+        return response ;
+    }
+
     public HttpEntity<?> getEntity(){
         HttpHeaders  headers = new HttpHeaders() ;
         headers.set("X-RapidAPI-Key", X_RAPIDAPI_KEY);
-        headers.set("X-RapidAPI-Host", X_RAPIDAPI_HOST);
+        headers.set("X-RapidAPI-Host","moviesdatabase.p.rapidapi.com");
         headers.set("ACCEPT", MediaType.APPLICATION_JSON_VALUE) ;
         return new HttpEntity<>(headers) ;
 

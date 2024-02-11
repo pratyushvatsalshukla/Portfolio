@@ -20,6 +20,5 @@ public class Location {
     private String tz_id;
     private long localtime_epoch;
     private String localtime;
-    private Current current;
 
 }

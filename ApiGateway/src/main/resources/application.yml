@@ -1,0 +1,31 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: Weather-Service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/weather/**
+        - id: Movie-Service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/movies/**
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Controller-Allow-Credentials
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+
+  application:
+    name: Api-Gateway
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true

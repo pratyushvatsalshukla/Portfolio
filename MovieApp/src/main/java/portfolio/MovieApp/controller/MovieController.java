@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import portfolio.MovieApp.entity.MovieNewsWrapper;
 import portfolio.MovieApp.entity.Top250Movies;
 import portfolio.MovieApp.entity.TopBoxOffice;
+import portfolio.MovieApp.entity.UpcomingMovies;
 import portfolio.MovieApp.entity.UpcomingTVShows;
 import portfolio.MovieApp.service.MovieServiceImpl;
 
@@ -64,6 +65,28 @@ public class MovieController {
             return new ResponseEntity<>("No Shows Found !!", HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/upcoming-movies")
+    public ResponseEntity<?> getUpcomingMovies() {
+        UpcomingMovies movies = movieService.getUpcomingMovies();
+        if(Objects.nonNull(movies) && !Objects.isNull(movies.getMovies())){
+            return new ResponseEntity<>(movies, HttpStatus.FOUND) ;
+        }
+        else{
+            return new ResponseEntity<>("No Movies Found !!", HttpStatus.NOT_FOUND) ;
+        }
+    }
+
+//    @GetMapping("/search/{movieName}")
+//    public ResponseEntity<?> searchMovies(@PathVariable("movieName") String movieName){
+//        SearchMovies movies = movieService.searchMovies(movieName);
+//        if(Objects.nonNull(movies)){
+//            return new ResponseEntity<>(movies, HttpStatus.FOUND) ;
+//        }
+//        else{
+//            return new ResponseEntity<>("No Movies Found !!", HttpStatus.NOT_FOUND) ;
+//        }
+//    }
 
 }
 
