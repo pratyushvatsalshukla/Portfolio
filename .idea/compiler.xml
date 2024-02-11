@@ -9,12 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Weather" />
         <module name="Eureka-Server" />
+        <module name="MovieApp" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Eureka-Server" options="-parameters" />
+      <module name="MovieApp" options="-parameters" />
       <module name="Weather" options="-parameters" />
     </option>
   </component>
