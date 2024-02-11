@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/Eureka-Server/pom.xml" />
         <option value="$PROJECT_DIR$/MovieApp/pom.xml" />
         <option value="$PROJECT_DIR$/ApiGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/StockMarket/pom.xml" />
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
